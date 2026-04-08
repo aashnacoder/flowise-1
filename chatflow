@@ -1,0 +1,82 @@
+{
+  "title": "RAG Chatbot using Flowise (AI Ethics Document QA)",
+  "overview": "This project demonstrates a Retrieval-Augmented Generation (RAG) Chatbot built using Flowise. The chatbot answers user queries based on a provided PDF document related to AI Ethics, ensuring context-aware and meaningful responses. It combines document retrieval with LLM generation for accurate and explainable outputs.",
+  "architecture": [
+    {
+      "step": "File Loader",
+      "description": "Loads the PDF document (Attention is All You Need)."
+    },
+    {
+      "step": "Recursive Character Text Splitter",
+      "description": "Splits the document into smaller chunks.",
+      "config": {
+        "chunk_size": 1000,
+        "chunk_overlap": 200
+      }
+    },
+    {
+      "step": "Google Gemini Embeddings",
+      "description": "Converts text chunks into vector embeddings.",
+      "model": "gemini-embedding-001"
+    },
+    {
+      "step": "In-Memory Vector Store",
+      "description": "Stores embeddings for fast semantic retrieval.",
+      "retrieval": "Top-K"
+    },
+    {
+      "step": "Mistral AI (LLM)",
+      "description": "Generates responses using retrieved context.",
+      "model": "mistral-tiny",
+      "temperature": 0.9
+    },
+    {
+      "step": "Buffer Memory",
+      "description": "Maintains conversational context for better interactions."
+    }
+  ],
+  "features": [
+    "Upload and process PDF documents",
+    "Semantic search using embeddings",
+    "Context-aware AI responses",
+    "Conversational memory support",
+    "Fast in-memory vector retrieval",
+    "Visual pipeline using Flowise"
+  ],
+  "tech_stack": [
+    "Flowise AI",
+    "Google Gemini Embeddings",
+    "Mistral AI",
+    "In-Memory Vector Database",
+    "JavaScript (Flowise backend)"
+  ],
+  "use_cases": [
+    "AI Ethics document analysis",
+    "Research paper Q&A",
+    "Knowledge base assistants",
+    "Educational tools"
+  ],
+  "setup": {
+    "install": "npm install -g flowise",
+    "start": "flowise start",
+    "url": "http://localhost:3000",
+    "steps": [
+      "Create a new Chatflow",
+      "Upload your PDF",
+      "Connect Gemini embeddings",
+      "Connect Mistral LLM",
+      "Link vector store and memory",
+      "Run the chatbot"
+    ]
+  },
+  "future_improvements": [
+    "Add persistent vector database (Pinecone, FAISS)",
+    "Improve citation-based responses",
+    "Enhance UI/UX",
+    "Deploy as a web application"
+  ],
+  "author": {
+    "name": "Aashna",
+    "role": "AI & Data Enthusiast"
+  }
+}
